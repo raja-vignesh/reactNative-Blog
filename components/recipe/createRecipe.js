@@ -29,7 +29,6 @@ class CreateRecipe extends Component {
     render() {
         return (
             <Container>
-                <Header/>
                 <Content>
                     <Form padder>
                         <Item floatingLabel style={styles.padding}>

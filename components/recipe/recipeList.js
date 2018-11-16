@@ -15,7 +15,7 @@ class RecipeList extends Component {
     render() {
         return (
             <Container>
-                <Header/>
+                {/* <Header/> */}
                 <Content>
                     {
                         this.state.recipes.length > 0 ? this.state.recipes.map(x => {
