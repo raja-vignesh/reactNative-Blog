@@ -47,7 +47,7 @@ class SignIn extends React.Component {
                             <Text>SignIn</Text>
                     </Button>
                     <Button block transparent style={styles.buttonStyle}>
-                        <Text>Sign up</Text>
+                        <Text>SignUp</Text>
                     </Button>
                 </Content>
             </Container>
