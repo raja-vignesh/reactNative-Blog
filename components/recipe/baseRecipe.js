@@ -8,11 +8,6 @@ class BaseRecipe extends Component {
     render() {
         return (
             <Container>
-                <Header hasTabs> 
-                    <Body>
-                        <Title>Recipes</Title>
-                    </Body>
-                </Header>
                 <Tabs>
                     <Tab heading="Recipe List">
                         <RecipeList/>

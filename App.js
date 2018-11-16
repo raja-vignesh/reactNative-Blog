@@ -13,6 +13,7 @@ import SignIn from './components/Auth/signin';
 import CreateRecipe from './components/recipe/createRecipe';
 import RecipeList from './components/recipe/recipeList';
 import BaseRecipe from './components/recipe/baseRecipe';
+import AppNavigator from './components/navigation/AppNavigator';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -24,8 +25,9 @@ const instructions = Platform.select({
 type Props = {};
 export default class App extends Component<Props> {
   render() {
+    console.log('AppNavigator')
     return (
-      <BaseRecipe/>
+      <AppNavigator/>
     );
   }
 }

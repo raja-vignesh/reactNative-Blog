@@ -23,16 +23,16 @@ class SignUp extends React.Component {
     submitChange = () => {
         console.log('submitChange')
         console.log(this.state);
+        this.props.navigation.navigate('BaseRecipe')
+    }
+
+    signIn = () => {
+        this.props.navigation.navigate('SignIn')
     }
 
     render() {
         return (
             <Container>
-                <Header>
-                    <Body>
-                        <Title>SignUp</Title>
-                    </Body>
-                </Header>
                 <Content>
                     <Form style={styles.buttonStyle}>
                         <Item floatingLabel>
@@ -56,7 +56,7 @@ class SignUp extends React.Component {
                     <Button block style={styles.buttonStyle} id="signup" onPress={this.submitChange}>
                             <Text>SignUp</Text>
                     </Button>
-                    <Button block transparent style={styles.buttonStyle} id="signin">
+                    <Button block transparent style={styles.buttonStyle} id="signin" onPress={this.signIn}>
                         <Text>SignIn</Text>
                     </Button>
                 </Content>
