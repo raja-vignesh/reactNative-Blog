@@ -1,32 +1,47 @@
 import React,{Component} from 'react';
 import {StyleSheet} from 'react-native';
 import RecipeItem from './recipeItem';
-import {Container,Content,Card,Header,Body} from 'native-base';
+import {Container,Content,Card,Header,Body,Text} from 'native-base';
+import {bindActionCreators} from 'redux';
+import RecipeListAction from '../../actions/recipeActions';
+import {connect} from 'react-redux';
 
 class RecipeList extends Component {
 
     state = {
-        recipes: [
-            {id:1,title:'This is title 1',content:'This is the first content',author:'xx yy'},
-            {id:2,title:'This is title 2',content:'This is the second content',author:'aa bb'},
-            {id:3,title:'This is title 3',content:'This is the thord content',author:'cc dd'}
-        ]
+
     }
+
+    componentDidMount() {
+        console.log('componentDidMount')
+        this.props.RecipeListAction()
+    }
+    
     render() {
         return (
             <Container>
-                {/* <Header/> */}
                 <Content>
-                    {
-                        this.state.recipes.length > 0 ? this.state.recipes.map(x => {
+  {                      this.props.recipes.length > 0 ? this.props.recipes.map(x => {
                             return <RecipeItem key ={x.id} recipe = {x}/>
-                        }) : <Text> Loading content... </Text>
-                    }
+                        }) : <Text> Loading content... </Text>  }                 
                 </Content>
             </Container>
         )
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        recipes:state.recipes
+    }
+}
 
-export default RecipeList;
+const mapDispatchToProps = (dispatch) => {
+    console.log('mapDispatchToProps');
+    return bindActionCreators({
+        RecipeListAction
+    }, dispatch)
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(RecipeList);
+

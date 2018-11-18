@@ -14,6 +14,9 @@ import CreateRecipe from './components/recipe/createRecipe';
 import RecipeList from './components/recipe/recipeList';
 import BaseRecipe from './components/recipe/baseRecipe';
 import AppNavigator from './components/navigation/AppNavigator';
+import {createStore, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import RecipeReducer from './reducers/recipeReducer';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -23,11 +26,14 @@ const instructions = Platform.select({
 });
 
 type Props = {};
+const initialSate = {}
+const store = createStore(combineReducers({recipes:RecipeReducer}))
+
 export default class App extends Component<Props> {
   render() {
     console.log('AppNavigator')
     return (
-      <AppNavigator/>
+      <Provider store={store}><AppNavigator/></Provider>
     );
   }
 }
