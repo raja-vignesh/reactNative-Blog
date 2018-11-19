@@ -14,7 +14,7 @@ class RecipeList extends Component {
 
     componentDidMount() {
         console.log('componentDidMount')
-        this.props.RecipeListAction()
+        this.props.fetchRecipe()
     }
     
     render() {
@@ -37,10 +37,13 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log('mapDispatchToProps');
-    return bindActionCreators({
-        RecipeListAction
-    }, dispatch)
+    console.log('mapDispatchToProps');   
+    // return bindActionCreators({
+    //     RecipeListAction
+    // }, dispatch)
+    return {
+        fetchRecipe:() => dispatch(RecipeListAction())
+    }
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(RecipeList);

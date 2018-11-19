@@ -1,6 +1,6 @@
 const RecipeListAction = () => {
-    return {
-        type:'RECIPE_LIST'
+    return (dispatch,action) =>{
+       return dispatch({type:'RECIPE_LIST'})
     }
 }
 

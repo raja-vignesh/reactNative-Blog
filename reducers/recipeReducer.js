@@ -10,6 +10,7 @@ const initialState = {
 const RecipeReducer = (state = initialState,action) => {
     switch (action.type) {
         case 'RECIPE_LIST':
+            console.log('in RECIPE_LIST')
             return state.recipes
         default:
             return state
