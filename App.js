@@ -5,7 +5,7 @@
  * @format
  * @flow
  */
-
+import { Root } from "native-base";
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import SignUp from './components/Auth/signup';
@@ -32,13 +32,13 @@ const instructions = Platform.select({
 type Props = {};
 const initialSate = {}
 const store = createStore(RootReducer,compose(applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-reactReduxFirebase(firebaseConfig,{enableRedirectHandling: false }),reduxFirestore(firebaseConfig)))
+reactReduxFirebase(firebaseConfig,{enableRedirectHandling: false,useFirestoreForProfile:true,userProfile:'users' }),reduxFirestore(firebaseConfig)))
 
 export default class App extends Component<Props> {
   render() {
     console.log('AppNavigator')
     return (
-      <Provider store={store}><AppNavigator/></Provider>
+      <Provider store={store}><Root><AppNavigator/></Root></Provider>
     );
   }
 }

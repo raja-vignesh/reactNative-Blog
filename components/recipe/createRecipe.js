@@ -1,7 +1,9 @@
 import React,{Component} from 'react';
-import {Container,Header,Form,Content,Label,Text,Button,Item,Textarea,Input,Body} from 'native-base';
+import {Container,Header,Form,Content,Label,Text,Button,Item,Textarea,Input,Body,Toast} from 'native-base';
 import {StyleSheet} from 'react-native';
-
+import AddRecipe from '../../actions/recipeActions';
+import {connect} from 'react-redux';
+ 
 class CreateRecipe extends Component {
     constructor(props) {
         super(props);
@@ -17,6 +19,11 @@ class CreateRecipe extends Component {
     handleCreate = () => {
         console.log('handleCreate')
         console.log(this.state)
+        console.log(this.props.createRecipe)
+        this.props.createRecipe(this.state)
+        Toast.show({
+            text: 'Recipe Created!'
+                  })
     }
 
     handleChange = (key,val) => {
@@ -49,10 +56,18 @@ class CreateRecipe extends Component {
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        createRecipe: (recipe) => {
+            dispatch(AddRecipe(recipe))
+        }
+    }
+}
+
 const styles = StyleSheet.create({
     padding: {
         marginTop:40
     }
 });
 
-export default CreateRecipe;
+export default connect(null,mapDispatchToProps)(CreateRecipe);

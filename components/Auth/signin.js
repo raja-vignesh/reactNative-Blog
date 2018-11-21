@@ -1,7 +1,8 @@
 import React,{Component} from 'react';
 import {StyleSheet} from 'react-native';
-
+import {connect} from 'react-redux';
 import {Container,Content,Form,Label,Input,Header, Item, Body,Title,Button,Text} from 'native-base';
+import {AuthActions} from '../../actions/authActions';
 
 class SignIn extends React.Component {
 
@@ -22,6 +23,7 @@ class SignIn extends React.Component {
         console.log('submitChange')
         console.log(this.state);
         this.props.navigation.navigate('BaseRecipe')
+        this.props.sigin(this.state)
     }
 
     signUp = () => {
@@ -57,7 +59,14 @@ class SignIn extends React.Component {
 } 
 
 
-export default SignIn;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        sigin : (creds) => dispatch(AuthActions(creds))
+    }
+}
+
+export default connect(null,mapDispatchToProps)(SignIn);
+
 
 const styles = StyleSheet.create({
     buttonStyle: {

@@ -17,7 +17,7 @@ const RecipeItem = (props) => {
                 </Body>
             </CardItem>
             <CardItem footer>
-                <Text> {recipe.author}</Text>
+                <Text> {recipe.authorForename} {recipe.authorSurname}</Text>
             </CardItem>
         </Card>
 
