@@ -4,12 +4,16 @@ const initialState = {
 }
 
 const AuthReducer = (state = initialState,action) => {
+    console.log('AuthReducer')
+    console.log(action.type)
+
     switch (action.type) {
         case 'USER_CREATION_SUCESS':
              return {
                  ...state,authError:null
              }
         case 'USER_CREATION_FAILED':
+            console.log('USER_CREATION_FAILED')
              return {
                  ...state,authError:action.err
         }

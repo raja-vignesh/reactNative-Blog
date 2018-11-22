@@ -4,6 +4,7 @@ import {signupActions} from '../../actions/authActions';
 import {Container,Content,Form,Label,Input,Header, Item, Body,Title,Button,Text} from 'native-base';
 import {connect} from 'react-redux';
 
+
 class SignUp extends React.Component {
 
     constructor(props) {
@@ -33,7 +34,25 @@ class SignUp extends React.Component {
         this.props.navigation.navigate('SignIn')
     }
 
+    componentDidMount() {
+
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate')
+        // const {auth,authErr} = this.props;
+        // console.log(this.state)
+        // console.log(this.props)
+        // if (auth.uid) {
+        //     console.log('navigate BaseRecipe')
+        //     this.props.navigation.navigate('BaseRecipe')
+        // }
+
+    }
+
+
     render() {
+ 
         return (
             <Container>
                 <Content>
@@ -76,7 +95,14 @@ const mapDispatchToProps = (dispatch) => {
     })
 }
 
-export default connect(null,mapDispatchToProps)(SignUp);
+const mapStateToProps = (state) => {
+    return {
+        authErr:state.auth.authErr,
+        auth:state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps) (SignUp);
 
 
 

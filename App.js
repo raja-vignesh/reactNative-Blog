@@ -32,16 +32,31 @@ const instructions = Platform.select({
 type Props = {};
 const initialSate = {}
 const store = createStore(RootReducer,compose(applyMiddleware(thunk.withExtraArgument({getFirebase,getFirestore})),
-reactReduxFirebase(firebaseConfig,{enableRedirectHandling: false,useFirestoreForProfile:true,userProfile:'users' }),reduxFirestore(firebaseConfig)))
+reactReduxFirebase(firebaseConfig,{enableRedirectHandling: false,useFirestoreForProfile:true,userProfile:'users',attachAuthIsReady:true }),reduxFirestore(firebaseConfig)))
 
-export default class App extends Component<Props> {
+class App extends Component<Props> {
+  state = {
+    loaded:''
+  }
+  componentWillMount() {
+    console.log('componentwillMount')
+    store.firebaseAuthIsReady.then(() => {
+      console.log('Firebase ready')
+      this.setState({
+        loaded:1
+      })
+    })
+  }
   render() {
-    console.log('AppNavigator')
+    console.log('render App')
     return (
       <Provider store={store}><Root><AppNavigator/></Root></Provider>
     );
   }
 }
+
+
+export default App
 
 const styles = StyleSheet.create({
   container: {

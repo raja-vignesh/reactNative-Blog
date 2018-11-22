@@ -22,7 +22,7 @@ class SignIn extends React.Component {
     submitChange = () => {
         console.log('submitChange')
         console.log(this.state);
-        this.props.navigation.navigate('BaseRecipe')
+        //
         this.props.sigin(this.state)
     }
 
@@ -30,7 +30,17 @@ class SignIn extends React.Component {
         this.props.navigation.navigate('SignUp')
     }
 
+    componentDidUpdate() {
+        console.log('componentDidUpdate')
+        const {auth,authErr} = this.props;
+        if (auth.uid) {
+            console.log('navigate BaseRecipe')
+            this.props.navigation.navigate('BaseRecipe')
+        }
+    }
+
     render() {
+      
         return (
             <Container>
                 <Content>
@@ -65,7 +75,14 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null,mapDispatchToProps)(SignIn);
+const mapStateToProps = (state) => {
+    return {
+        authErr:state.auth.authErr,
+        auth:state.firebase.auth
+    }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(SignIn);
 
 
 const styles = StyleSheet.create({
